@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Righteous&display=swap');
+
+:root {
+  --primary-color: #f3c623;
+  --secondary-color: #f3f3f3;
+  --error: #ff0000;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f1f1f1;
+}
+
+header {
+  background: #fff;
+  padding: 10px;
+}
+
+header.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header a {
+  text-decoration: none;
+  color: #333;;
+}
+
+.pages {
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.home {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
+}
+
+.todo-details {
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.todo-details h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: rgb(138, 233, 138);
+}
+
+.todo-details p {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.todo-details .taskType {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.completed {
+  color: green;
+}
+
+.notCompleted {
+  color: rgb(243, 240, 44);
+}
+
+label, input, select {
+  display: block;
+}
+
+input, select {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+form button {
+  background: var(--primary-color);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+.error {
+  color: var(--error);
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  background: #ffefef;
+  border: 1px solid var(--error);
+  border-radius: 4px;
+  margin: 20px 0;
+  padding: 10px;
+}
+
+.todo-details .delete-button,
+.todo-details .edit-button {
+  position: absolute;
+  top: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-details .delete-button {
+  right: 20px;
+}
+
+.todo-details .edit-button {
+  right: 60px;
+}
+
+.todo-details svg {
+  width: 20px;
+  height: 20px;
+}
+
+input.error {
+  border: 1px solid var(--error);
+  color: #333;
+}
+
+.time {
+  font-size: 0.8rem;
+  color: #5c5c5c;
+}
