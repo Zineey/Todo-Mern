@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSignupContext } from '../hooks/useSignupContext';
-
+import Swal from 'sweetalert2';
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -13,7 +13,20 @@ const Signup = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         
-        await signup(email, password, firstName, lastName);
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you want to sign up with these details?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, sign up!',
+            cancelButtonText: 'No, cancel!',
+        });
+
+        if (result.isConfirmed) {
+            await signup(email, password, firstName, lastName);
+        }
+
+        
     }
 
 

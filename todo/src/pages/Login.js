@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLogin } from '../hooks/useLogin';
-
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -10,7 +10,20 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        await login(email, password);
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you want to login with these details?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, login!',
+            cancelButtonText: 'No, cancel!',
+        });
+
+        if (result.isConfirmed) {
+            await login(email, password);
+        }
+
+        // await login(email, password);
 
     }
 
