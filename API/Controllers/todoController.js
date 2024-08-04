@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 
 // Get all todos
 const getTodos = async (req, res) => {
+    const user_id = req.user.id;
     try {
-        const todos = await todoModel.find();
+        const todos = await todoModel.find({user_id}).sort({ createdAt: -1 });
         res.status(200).json(todos);
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -50,7 +51,8 @@ const createTodo = async (req, res) => {
     }
 
     try {
-        const todo = await todoModel.create({ title, time, completed });
+        const user_id = req.user.id;
+        const todo = await todoModel.create({ title, time, completed, user_id });
         res.status(201).json(todo);
     } catch (error) {
         res.status(400).json({ message: error.message });
