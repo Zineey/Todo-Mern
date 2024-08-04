@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { useTodoContext } from "../hooks/useTodoContext";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-
+import { useAuthContext } from "../hooks/useAuthContext";
 const MySwal = withReactContent(Swal);
 
 const TodoForm = ({ todo = null, setIsEditing = null }) => {
     const { dispatch } = useTodoContext();
-
+    const { user } = useAuthContext();
     const [title, setTitle] = useState('');
     const [time, setTime] = useState('');
     const [completed, setCompleted] = useState(false);
@@ -22,8 +22,19 @@ const TodoForm = ({ todo = null, setIsEditing = null }) => {
         }
     }, [todo]);
 
+    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if(!user){
+            return MySwal.fire({
+                title: 'Error!',
+                text: 'You must be logged in to add a new task!',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
 
         const result = await MySwal.fire({
             title: 'Are you sure?',
@@ -49,7 +60,8 @@ const TodoForm = ({ todo = null, setIsEditing = null }) => {
                 method,
                 body: JSON.stringify(newTodo),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
                 }
             });
 

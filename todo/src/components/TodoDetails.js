@@ -4,12 +4,14 @@ import TodoForm from './TodoForm';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-
+import { useAuthContext } from '../hooks/useAuthContext';
 const MySwal = withReactContent(Swal);
 
 const TodoDetails = ({ todo }) => {
     const { dispatch } = useTodoContext();
     const [isEditing, setIsEditing] = useState(false); 
+    const {user} = useAuthContext();
+
 
     function formatTime(time24) {
         let [hour, minute] = time24.split(':');
@@ -20,6 +22,15 @@ const TodoDetails = ({ todo }) => {
     }
 
     const handleClick = async () => {
+        if(!user){  
+            return MySwal.fire({
+                title: 'Error!',
+                text: 'You must be logged in to delete a task!',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+
         const result = await MySwal.fire({
             title: 'Are you sure?',
             text: 'Do you really want to delete this task?',
@@ -32,6 +43,9 @@ const TodoDetails = ({ todo }) => {
         if (result.isConfirmed) {
             const response = await fetch('/api/todos/' + todo._id, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
             });
 
             if (response.ok) {
@@ -61,6 +75,15 @@ const TodoDetails = ({ todo }) => {
     };
 
     const handleEditClick = () => {
+        if(!user){
+            return MySwal.fire({
+                title: 'Error!',
+                text: 'You must be logged in to edit a task!',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+        
         setIsEditing(true); 
     };
 

@@ -4,6 +4,7 @@
   --primary-color: #f3c623;
   --secondary-color: #f3f3f3;
   --error: #ff0000;
+  --primary: #2af323;
 }
 
 body {
@@ -17,7 +18,7 @@ header {
   padding: 10px;
 }
 
-header.container {
+header .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 10px 20px;
@@ -146,4 +147,35 @@ input.error {
 .time {
   font-size: 0.8rem;
   color: #5c5c5c;
+}
+
+
+nav{
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 10px;
+}
+
+form.signup, form.login{
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+nav .logoutBtn{
+  background: #fff;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 10px;
 }

@@ -14,13 +14,21 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-});
+    firstName:{
+        type: String,
+        required: true,
+    },
+    lastName:{
+        type: String,
+        required: true,
+    }
+}, {timestamps: true});
 
 // Static signup
-userSchema.statics.signup = async function (email, password) {
+userSchema.statics.signup = async function (email, password, firstName, lastName) {
 
-    if(!email || !password){
-        throw Error('Email and Password are required');
+    if (!email || !password || !firstName || !lastName) {
+        throw Error('All Fields are Required!');
     }
     if(!validator.isEmail(email)){
         throw Error('Email is invalid');
@@ -38,7 +46,7 @@ userSchema.statics.signup = async function (email, password) {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user = await this.create({ email, password: hashedPassword });
+    const user = await this.create({ email, password: hashedPassword, firstName, lastName });
     return user;
 };
 
