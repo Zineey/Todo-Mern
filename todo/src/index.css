@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Righteous&display=swap');
 
 :root {
-  --primary-color: #f3c623;
+  --primary-color: #5dc795;
   --secondary-color: #f3f3f3;
   --error: #ff0000;
-  --primary: #2af323;
+  --primary: #5dc795;
 }
 
 body {
@@ -91,7 +91,19 @@ input, select {
   box-sizing: border-box;
 }
 
-form button {
+form .button-cancel {
+  background: var(--error);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  margin-left: 10px
+}
+
+
+form .button-submit {
   background: var(--primary-color);
   border: 0;
   color: #fff;
@@ -100,6 +112,17 @@ form button {
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
 }
+
+form .submit {
+  background: var(--primary-color);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
 
 .error {
   color: var(--error);

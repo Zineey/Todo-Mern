@@ -127,7 +127,8 @@ const TodoForm = ({ todo = null, setIsEditing = null }) => {
                     <option value={true}>Completed</option>
                 </select>
             )}
-            <button>{todo ? 'Update Task' : 'Add Task'}</button>
+            <button className="button-submit">{todo ? 'Update Task' : 'Add Task'}</button>
+            {todo && <button type="button" className="button-cancel" onClick={() => setIsEditing(false)}>Cancel</button>}
         </form>
     );
 }
